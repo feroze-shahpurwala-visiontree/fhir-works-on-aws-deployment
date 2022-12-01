@@ -82,7 +82,7 @@ function install_dependencies(){
     elif [[ "$OSTYPE" == "darwin"* ]]; then
         #sudo -u $SUDO_USER removes brew's error message that brew should not be run as 'sudo'
         type -a brew 2>&1 || { error_msg="ERROR: brew is required to install packages."; return 1; }
-        sudo -u $SUDO_USER brew install node@12
+        sudo -u $SUDO_USER brew install node@14
         sudo -u $SUDO_USER brew install python3
         sudo npm install --global yarn@1.22.5
         sudo pip3 install boto3
