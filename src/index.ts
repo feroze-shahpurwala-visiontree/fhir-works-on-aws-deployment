@@ -26,9 +26,13 @@ async function asyncServerless() {
     });
 }
 
-const serverlessHandler: Promise<any> = asyncServerless();
+const serverlessHandler = serverless(generateServerlessRouter(fhirConfig, genericResources, {}), {
+    request(request: any, event: any) {
+        request.user = event.user;
+    },
+});
 
-export const handler = async (event: any = {}, context: any = {}): Promise<any> => {
-    await ensureAsyncInit(serverlessHandler);
-    return (await serverlessHandler)(event, context);
+export default async (event: any = {}, context: any = {}): Promise<any> => {
+    return serverlessHandler(event, context);
+
 };
