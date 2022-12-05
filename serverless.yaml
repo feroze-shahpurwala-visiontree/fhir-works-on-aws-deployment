@@ -94,22 +94,28 @@ functions:
           method: ANY
           path: /
           private: true
+          cors: true
       - http:
           method: ANY
           path: '{proxy+}'
           private: true
+          cors: true
       - http:
           method: GET
           path: /metadata
+          cors: true
       - http:
           method: GET
           path: /tenant/{tenantId}/metadata
+          cors: true
       - http:
           method: GET
           path: /.well-known/smart-configuration
+          cors: true
       - http:
           method: GET
           path: /tenant/{tenantId}/.well-known/smart-configuration
+          cors: true
     handler: src/index.handler
     provisionedConcurrency: 5
     environment:
